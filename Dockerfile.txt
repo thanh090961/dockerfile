@@ -1,0 +1,21 @@
+# based centos image
+FROM centos:7
+
+MAINTAINER "HOANG MINH THANH"
+
+# Install Apache
+RUN yum -y install httpd
+
+WORKDIR /var/www/html
+
+#Copy to image
+
+ADD ./code /var/www/html
+
+#Open ports
+
+EXPOSE 80 443
+
+# Start apache service when container run
+
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
